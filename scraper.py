@@ -24,19 +24,23 @@
 # called "data".
 
 #import unicodedata
-import urllib3
+#import urllib3
 #from lxml.html import fromstring, tostring
 #import lxml.html
+#from bs4 import BeautifulSoup
+
+
+import requests
 from bs4 import BeautifulSoup
 
 for i in range(1842, 1847):
     ngo_index = i
     ngo_url = "http://npo.moi.gov.tw/npom/homepage/detail/26888" + str(ngo_index)
-    http = urllib3.PoolManager()
-    r = http.request('GET', ngo_url)
-    root = BeautifulSoup(r.data, 'html.parser')
-    ngo_table = root.find('table')
+
+    r = requests.get(ngo_url)
+    r = BeautifulSoup(r.content, 'html.parser')
+    ngo_table = r.find('table')
+    print('index : ', i)
     for j in ngo_table.find_all('tr'):
         print(j.find_all('td')[1].string.strip())
     print('-------------------------------------------------')
-    
