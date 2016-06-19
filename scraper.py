@@ -29,16 +29,14 @@ import urllib3
 #import lxml.html
 from bs4 import BeautifulSoup
 
-
-ngo_index = 1845
-ngo_url = "http://npo.moi.gov.tw/npom/homepage/detail/26888" + str(ngo_index)
-http = urllib3.PoolManager()
-r = http.request('GET', ngo_url)
-root = BeautifulSoup(r.data, 'html.parser')
-ngo_table = root.find('table')
-for i in ngo_table.find_all('tr'):
-    for j in i.find_all('td'):
-        j_txt = j.string
-        j_txt = j_txt.strip()
-        print(j_txt , ' : ', end='')
-    print('\n')
+for i in range(1842, 1847):
+    ngo_index = i
+    ngo_url = "http://npo.moi.gov.tw/npom/homepage/detail/26888" + str(ngo_index)
+    http = urllib3.PoolManager()
+    r = http.request('GET', ngo_url)
+    root = BeautifulSoup(r.data, 'html.parser')
+    ngo_table = root.find('table')
+    for j in ngo_table.find_all('tr'):
+        print(j.find_all('td')[1].string.strip())
+    print('-------------------------------------------------')
+    
