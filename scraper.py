@@ -22,3 +22,9 @@
 # All that matters is that your final data is written to an SQLite database
 # called "data.sqlite" in the current working directory which has at least a table
 # called "data".
+
+import scraperwiki
+import lxml.html
+
+html = scraperwiki.scrape("http://npo.moi.gov.tw/npom/homepage/detail/268881482")
+print(html)
