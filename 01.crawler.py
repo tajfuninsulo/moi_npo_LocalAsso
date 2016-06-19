@@ -9,7 +9,7 @@ import requests
 from bs4 import BeautifulSoup
 import sqlite3
 
-conn = sqlite3.connect('ngo_list.db')
+conn = sqlite3.connect('npo_list.db')
 print(conn)
 for i in range(1482, 8310):
     ngo_index = i
