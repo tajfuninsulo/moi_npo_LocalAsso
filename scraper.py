@@ -27,4 +27,7 @@ import scraperwiki
 import lxml.html
 
 html = scraperwiki.scrape("http://npo.moi.gov.tw/npom/homepage/detail/268881482")
-print(html)
+root = lxml.html.fromstring(html)
+print(root.cssselect("table[class='table']"))
+
+
